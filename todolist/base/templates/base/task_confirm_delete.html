@@ -1,0 +1,15 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+
+
+<button class="button" onclick="window.location.href='{% url 'tasks'  %}'">Back</button>
+<body>
+    <form class="container" method="POST">
+        {% csrf_token %}
+        <p>Are you sure want to delete "{{task}}"</p>
+        <input class="button" type="submit"  value="Yes">
+    </form>
+</body>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+
+<button class="button" onclick="window.location.href='{% url 'tasks'  %}'">Back</button>
+
+<h1>Task:{{object}}</h1>
+
+<p>{{ task.description }}</p>
+{% if task.complete == True%}
+<h1>Task Complete<h1>
+{% else %}
+<h1>Task Incomplete<h1>
+{% endif %}
+{% endblock %}

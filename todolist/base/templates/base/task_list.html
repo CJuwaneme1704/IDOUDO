@@ -1,0 +1,54 @@
+{% extends 'base/index.html' %}
+
+{% block content %}
+
+<h1>IDOUDU</h1>
+{% if request.user.is_authenticated %}
+<h1>Hello {{request.user}}</h1>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button class="button" type="submit">logout</button>
+</form>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{%  endif %}
+<hr>
+
+
+<button class="button" onclick="window.location.href='{% url 'task-create' %}'">Add Item</button>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{input}}" >
+    <input class="button" type="submit" value="Search">
+</form>
+
+{% if tasks %}
+<table>
+    <tr>
+        <th>Items</th>
+        
+    </tr>
+   {% for task in tasks %}
+    <tr>
+        <td>{{task.title}}</td>
+        <td>
+            <button  class="button" onclick="window.location.href='{% url 'task' task.id %}'">Details</button>
+        </td>
+        <td>
+           <button class="button" onclick="window.location.href='{% url 'task-edit' task.id %}'">Update
+           </button>
+        </td>
+        <td>
+            <button class="button" onclick="window.location.href='{% url 'task-delete' task.id %}'">Remove
+            </button>
+        </td>
+        
+    </tr>
+    {% empty %}
+    <h3> No items in list </h3>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

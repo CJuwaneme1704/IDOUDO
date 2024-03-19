@@ -1,0 +1,28 @@
+{% extends 'base/index.html' %}
+
+{% block content%}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Signup</title>
+    </head>
+    <body>
+        <h1>IDOUDU</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class='button'type="submit" value="Signup">
+        </form>
+
+        <p>Already have an account Login Here</p>
+        <br>
+        <button class="button" onclick="window.location.href='{% url 'login'%}'">Login</button> 
+    </body>
+</html>
+
+{% endblock %}
+
+
